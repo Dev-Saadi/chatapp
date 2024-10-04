@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind CSS Variables */
+
+:root {
+  --main_bg: #fff;
+  --page_color: #fcf8f3;
+  --input_color: #ebf4f6;
+  --line_color: #eeedeb;
+  --primary_bg: #45474b;
+  --single_color: #7469b6;
+  --secondary_bg: #7e2553;
+  --hover_color: #fefded;
+  --blur: rgba(234, 234, 234, 0.8);
+  --text_color: #2f3645;
+  --primary_color: #071952;
+  --secondary_color: #758694;
+  --title_color: #b4b4b8;
+  --black: #000000;
+  --white: #f5f7f8;
+  --green: #80af81;
+  --blueTeal: #83b4ff;
+  --blue: #3dc2ec;
+  --red: #a91d3a;
+  --yellow: #f5e7b2;
+  --purple: #e49bff;
+  --pink: #ffd0d0;
+  --cyan: #08a4a7;
+  --ash: #8d949e;
+}
+
+/* Initial Fonts */
+
+@font-face {
+  font-family: "Gilroy Regular";
+  src: url(/src/assets/fonts/Gilroy-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy Light";
+  src: url(/src/assets/fonts/Gilroy-Light.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy Medium";
+  src: url(/src/assets/fonts/Gilroy-Medium.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy Black";
+  src: url(/src/assets/fonts/Gilroy-Black.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy Bold";
+  src: url(/src/assets/fonts/Gilroy-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy SemiBold";
+  src: url(/src/assets/fonts/Gilroy-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: "Gilroy ExtraBold";
+  src: url(/src/assets/fonts/Gilroy-ExtraBold.ttf);
+}
+
+@font-face {
+  font-family: "Exquite";
+  src: url(/src/assets/fonts/Exquite.ttf);
+}
+
+@font-face {
+  font-family: "Mogan";
+  src: url(/src/assets/fonts/Mogan.ttf);
+}
+
+@font-face {
+  font-family: "Colombia Italic";
+  src: url(/src/assets/fonts/Colombia\ Italic.ttf);
+}
+
+@font-face {
+  font-family: "Colombia Regular";
+  src: url(/src/assets/fonts/Colombia\ Regular.ttf);
+}
