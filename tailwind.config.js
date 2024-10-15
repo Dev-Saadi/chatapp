@@ -27,6 +27,7 @@ export default {
       cyan: "var(--cyan)",
       blueTeal: "var(--blueTeal)",
       ash: "var(--ash)",
+      transDark: "var(--transDark)",
     },
     fontFamily: {
       gilroyBlack: ["Gilroy Black"],
