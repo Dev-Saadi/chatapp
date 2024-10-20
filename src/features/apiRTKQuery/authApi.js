@@ -30,6 +30,15 @@ export const authApi = createApi({
         },
       }),
     }),
+    reVerification: builder.mutation({
+      query: (token) => ({
+        url: "/api/v1/auth/reverification",
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }),
+    }),
   }),
 });
 
@@ -37,4 +46,5 @@ export const {
   useAddUserMutation,
   useLoggedInUserMutation,
   useVerifiedUserMutation,
+  useReVerificationMutation,
 } = authApi;

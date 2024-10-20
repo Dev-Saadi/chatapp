@@ -126,15 +126,27 @@ const LoginForm = ({ toast }) => {
                 </button>
               )}
 
-              <p className="font-semibold text-base  2xl:text-base xl:text-sm mt-4 sm:mt-0">
-                Don't gave an account?{" "}
-                <Link
-                  className="text-secondary_bg underline"
-                  to="/Registration"
-                >
-                  Sign Up
-                </Link>
-              </p>
+              <div>
+                <p className="font-semibold text-base  2xl:text-base xl:text-sm mt-4 sm:mt-0">
+                  Don't gave an account?{" "}
+                  <Link
+                    className="text-secondary_bg underline"
+                    to="/Registration"
+                  >
+                    Sign Up
+                  </Link>
+                </p>
+
+                <div className="font-semibold text-base 2xl:text-right  2xl:text-sm xl:text-sm 3xl:mt-3 mt-2 sm:mt-0">
+                  <Link
+                    target="_"
+                    className="text-secondary_bg hover:underline"
+                    to="/Reset"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
+              </div>
             </div>
           </form>
         </div>

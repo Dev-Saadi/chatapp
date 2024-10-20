@@ -20,3 +20,18 @@ export const logIn = Yup.object({
 
   password: Yup.string().min(8).required("Please enter a correct password"),
 });
+
+export const findUser = Yup.object({
+  email: Yup.string().email().required("Please enter a your email"),
+});
+
+export const userCode = Yup.object({
+  code: Yup.string()
+    .min("5", "Code must be 5 characters")
+    .max("5", "Code must be 5 characters")
+    .required("Please enter your verification code"),
+});
+
+export const newPassword = Yup.object({
+  password: Yup.string().min(8).required("Please enter your new password"),
+});

@@ -19,12 +19,12 @@ const ActivatePage = () => {
   const { token } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(userInfo.token);
-  console.log(token);
+  // console.log(userInfo.token);
+  // console.log(token);
 
   useEffect(() => {
     activateUser();
-  }, [token, userInfo]);
+  }, []);
 
   const activateUser = async () => {
     try {
