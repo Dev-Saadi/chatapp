@@ -22,7 +22,7 @@ export const logIn = Yup.object({
 });
 
 export const findUser = Yup.object({
-  email: Yup.string().email().required("Please enter a your email"),
+  email: Yup.string().email().required("Please enter your email address"),
 });
 
 export const userCode = Yup.object({

@@ -6,18 +6,62 @@ import SecretCode from "../../components/PasswordChange/SecretCode";
 import ChangingPassword from "../../components/PasswordChange/ChangingPassword";
 
 const ResetPassword = () => {
-  const [visible, setVisible] = useState(3);
+  const [visible, setVisible] = useState(0);
+  const [user, setUser] = useState();
+  const [success, setSuccess] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const renderComponent = () => {
     switch (visible) {
       case 0:
-        return <FindAccount />;
+        return (
+          <FindAccount
+            setLoading={setLoading}
+            setError={setError}
+            setUser={setUser}
+            error={error}
+            setVisible={setVisible}
+          />
+        );
       case 1:
-        return <PasswordChange />;
+        if (user) {
+          return (
+            <PasswordChange
+              user={user}
+              setSuccess={setSuccess}
+              success={success}
+              setLoading={setLoading}
+              setError={setError}
+              setVisible={setVisible}
+              error={error}
+            />
+          );
+        }
+        setVisible(0);
+        return null;
       case 2:
-        return <SecretCode />;
+        if (user) {
+          return (
+            <SecretCode
+              user={user}
+              setSuccess={setSuccess}
+              success={success}
+              setLoading={setLoading}
+              setError={setError}
+              setVisible={setVisible}
+              error={error}
+            />
+          );
+        }
+        setVisible(0);
+        return null;
       case 3:
-        return <ChangingPassword />;
+        if (user) {
+          return <ChangingPassword />;
+        }
+        setVisible(0);
+        return null;
       default:
         return null;
     }

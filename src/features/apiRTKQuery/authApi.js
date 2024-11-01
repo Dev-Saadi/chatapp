@@ -39,6 +39,27 @@ export const authApi = createApi({
         },
       }),
     }),
+    matchUser: builder.mutation({
+      query: (email) => ({
+        url: "/api/v1/auth/resetpassword",
+        method: "POST",
+        body: { email },
+      }),
+    }),
+    sendCode: builder.mutation({
+      query: (email) => ({
+        url: "/api/v1/auth/resetcode",
+        method: "POST",
+        body: { email },
+      }),
+    }),
+    verifyCode: builder.mutation({
+      query: ({ email, code }) => ({
+        url: "/api/v1/auth/verifyresetcode",
+        method: "POST",
+        body: { email, code },
+      }),
+    }),
   }),
 });
 
@@ -47,4 +68,7 @@ export const {
   useLoggedInUserMutation,
   useVerifiedUserMutation,
   useReVerificationMutation,
+  useMatchUserMutation,
+  useSendCodeMutation,
+  useVerifyCodeMutation,
 } = authApi;

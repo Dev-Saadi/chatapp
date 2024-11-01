@@ -2,8 +2,11 @@ import { useFormik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import { findUser } from "../../validation/validate";
+import { useMatchUserMutation } from "../../features/apiRTKQuery/authApi";
 
-const FindAccount = () => {
+const FindAccount = ({ setLoading, setError, setUser, error, setVisible }) => {
+  const [matchUser] = useMatchUserMutation();
+
   const initialState = {
     email: "",
   };
@@ -12,9 +15,22 @@ const FindAccount = () => {
     initialValues: initialState,
     validationSchema: findUser,
     onSubmit: () => {
-      console.log("submitted");
+      findUserResult();
     },
   });
+
+  const findUserResult = async () => {
+    try {
+      setLoading(true);
+      let result = await matchUser(formik.values.email).unwrap();
+      setUser(result);
+      setError("");
+      setVisible(1);
+      // console.log(result);
+    } catch (error) {
+      setError(error.data.message);
+    }
+  };
 
   let { errors, touched } = formik;
   return (
@@ -39,6 +55,9 @@ const FindAccount = () => {
 
         {errors.email && touched.email && (
           <p className="text-red text-sm font-gilroyRegular">{errors.email}</p>
+        )}
+        {error && (
+          <p className="text-red text-sm font-gilroyRegular">{error}</p>
         )}
 
         <div className="w-full h-[1px] bg-line_color mt-2"></div>

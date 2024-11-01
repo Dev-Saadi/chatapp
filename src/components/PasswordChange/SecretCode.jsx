@@ -2,8 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { userCode } from "../../validation/validate";
+import { useVerifyCodeMutation } from "../../features/apiRTKQuery/authApi";
 
-const SecretCode = () => {
+const SecretCode = ({
+  user,
+  setSuccess,
+  success,
+  setLoading,
+  setError,
+  setVisible,
+  error,
+}) => {
+  const [verifyCode] = useVerifyCodeMutation();
+
   const initialState = {
     code: "",
   };
@@ -12,9 +23,27 @@ const SecretCode = () => {
     initialValues: initialState,
     validationSchema: userCode,
     onSubmit: () => {
-      console.log("submitted");
+      verifySecretCode();
     },
   });
+
+  const verifySecretCode = async () => {
+    try {
+      setLoading(true);
+      let result = await verifyCode({
+        email: user.email,
+        code: formik.values.code,
+      }).unwrap();
+      setSuccess(result.message);
+      setError("");
+      setTimeout(() => {
+        setVisible(3);
+        setSuccess("");
+      }, 3000);
+    } catch (error) {
+      setError(error.data.message);
+    }
+  };
 
   let { errors, touched } = formik;
 
@@ -41,6 +70,14 @@ const SecretCode = () => {
 
         {errors.code && touched.code && (
           <p className="text-red text-sm font-gilroyRegular">{errors.code}</p>
+        )}
+
+        {success && (
+          <p className="text-green text-sm font-gilroyRegular">{success}</p>
+        )}
+
+        {error && (
+          <p className="text-red text-sm font-gilroyRegular">{error}</p>
         )}
 
         <div className="w-full h-[1px] bg-line_color mt-2"></div>
