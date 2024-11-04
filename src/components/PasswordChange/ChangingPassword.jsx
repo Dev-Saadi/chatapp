@@ -1,9 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { newPassword } from "../../validation/validate";
+import { useChangePasswordMutation } from "../../features/apiRTKQuery/authApi";
 
-const ChangingPassword = () => {
+const ChangingPassword = ({
+  user,
+  setSuccess,
+  success,
+  setLoading,
+  setError,
+  error,
+}) => {
+  const [changePassword] = useChangePasswordMutation();
+
+  const navigate = useNavigate();
+
   const initialState = {
     password: "",
   };
@@ -12,9 +24,27 @@ const ChangingPassword = () => {
     initialValues: initialState,
     validationSchema: newPassword,
     onSubmit: () => {
-      console.log("submitted");
+      changePreviousPassword();
     },
   });
+
+  const changePreviousPassword = async () => {
+    try {
+      setLoading(true);
+      let result = await changePassword({
+        email: user.email,
+        password: formik.values.password,
+      }).unwrap();
+      setSuccess(result.message);
+      setError("");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    } catch (error) {
+      setError(error.data.message);
+    }
+  };
 
   let { errors, touched } = formik;
 
@@ -42,6 +72,14 @@ const ChangingPassword = () => {
           <p className="text-red text-sm font-gilroyRegular">
             {errors.password}
           </p>
+        )}
+
+        {success && (
+          <p className="text-green text-sm font-gilroyRegular">{success}</p>
+        )}
+
+        {error && (
+          <p className="text-green text-sm font-gilroyRegular">{error}</p>
         )}
 
         <div className="w-full h-[1px] bg-line_color mt-2"></div>

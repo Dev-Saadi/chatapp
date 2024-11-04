@@ -58,7 +58,16 @@ const ResetPassword = () => {
         return null;
       case 3:
         if (user) {
-          return <ChangingPassword />;
+          return (
+            <ChangingPassword
+              user={user}
+              setSuccess={setSuccess}
+              success={success}
+              setLoading={setLoading}
+              setError={setError}
+              error={error}
+            />
+          );
         }
         setVisible(0);
         return null;
